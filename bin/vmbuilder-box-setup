@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# description:
+#
+# requires:
+#  bash
+#  rsync, init
+#
+
+function vmbuilder_box_deploy() {
+  rsync -av ${BASH_SOURCE[0]%/*}/../templates/ vmbuilder-box
+}
+
+function vmbuilder_box_setup_git() {
+  cd vmbuilder-box
+
+  [[ -d .git       ]] || git init
+  [[ -f .gitmodule ]] || git submodule add https://github.com/hansode/vmbuilder.git
+}
+
+function vmbuilder_box_cli() {
+  vmbuilder_box_deploy
+  (vmbuilder_box_setup_git)
+}
+
+# CLI
+if [[ "${BASH_SOURCE[0]##*/}" == "vmbuilder-box-setup" ]]; then
+  vmbuilder_box_cli $*
+fi
