@@ -2,5 +2,5 @@
 language: c
 install: make
 before_install:
-  - "sudo apt-get -qq install rsync git"
+  - "sudo apt-get -qq install rsync"
 script: make test
