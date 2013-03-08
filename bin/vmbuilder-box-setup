@@ -8,22 +8,31 @@
 #
 
 function vmbuilder_box_deploy() {
-  rsync -av ${BASH_SOURCE[0]%/*}/../templates/ vmbuilder-box
+  local target_dir=$1
+  [[ -n "${target_dir}" ]] || { echo "[ERROR] Invalid argument: target_dir:${target_dir} (${BASH_SOURCE[0]##*/}:${LINENO})" >&2; return 1; }
+
+  rsync -av ${BASH_SOURCE[0]%/*}/../templates/ ${target_dir}
 }
 
 function vmbuilder_box_setup_git() {
-  cd vmbuilder-box
+  local target_dir=$1
+  [[ -n "${target_dir}" ]] || { echo "[ERROR] Invalid argument: target_dir:${target_dir} (${BASH_SOURCE[0]##*/}:${LINENO})" >&2; return 1; }
+
+  cd ${target_dir}
 
   [[ -d .git       ]] || git init
   [[ -f .gitmodule ]] || git submodule add https://github.com/hansode/vmbuilder.git
 }
 
 function vmbuilder_box_cli() {
-  vmbuilder_box_deploy
-  (vmbuilder_box_setup_git)
+  local target_dir=${1:-vmbuilder-box}
+  [[ -n "${target_dir}" ]] || { echo "[ERROR] Invalid argument: target_dir:${target_dir} (${BASH_SOURCE[0]##*/}:${LINENO})" >&2; return 1; }
+
+  vmbuilder_box_deploy ${target_dir}
+  (vmbuilder_box_setup_git ${target_dir})
 }
 
 # CLI
 if [[ "${BASH_SOURCE[0]##*/}" == "vmbuilder-box-setup" ]]; then
-  vmbuilder_box_cli $*
+  vmbuilder_box_cli $@
 fi

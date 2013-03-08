@@ -17,11 +17,11 @@ function setUp() {
 }
 
 function tearDown() {
-  rm -rf vmbuilder-box
+  rm -rf ${target_dir}
 }
 
 function test_vmbuilder_box_cli() {
-  vmbuilder_box_cli
+  vmbuilder_box_cli ${target_dir}
   assertEquals $? 0
 }
 

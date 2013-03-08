@@ -13,16 +13,21 @@
 ## functions
 
 function setUp() {
-  mkdir vmbuilder-box
+  mkdir ${target_dir}
   function git() { echo git $*; }
 }
 
 function tearDown() {
-  rm -rf vmbuilder-box
+  rm -rf ${target_dir}
 }
 
-function test_vmbuilder_box_setup_git() {
+function test_vmbuilder_box_setup_git_no_opts() {
   (vmbuilder_box_setup_git >/dev/null)
+  assertNotEquals $? 0
+}
+
+function test_vmbuilder_box_setup_git_opts() {
+  (vmbuilder_box_setup_git ${target_dir} >/dev/null)
   assertEquals $? 0
 }
 
