@@ -10,7 +10,7 @@ Getting Started
 
 ```
 $ cd /path/to/dir
-$ vmbuilder-box-setup
+$ vmbuilder-box-setup [name]
 ```
 
 Installation
