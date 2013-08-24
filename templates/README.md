@@ -7,3 +7,7 @@ Getting Started
 ```
 $ make box
 ```
+
+```
+$ make runvm
+```
