@@ -23,12 +23,12 @@ function tearDown() {
 
 function test_vmbuilder_box_setup_git_no_opts() {
   (vmbuilder_box_setup_git >/dev/null)
-  assertNotEquals $? 0
+  assertNotEquals 0 $?
 }
 
 function test_vmbuilder_box_setup_git_opts() {
   (vmbuilder_box_setup_git ${target_dir} >/dev/null)
-  assertEquals $? 0
+  assertEquals 0 $?
 }
 
 ## shunit2
