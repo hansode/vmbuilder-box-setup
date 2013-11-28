@@ -20,8 +20,13 @@ function vmbuilder_box_setup_git() {
 
   cd ${target_dir}
 
-  [[ -d .git       ]] || git init
-  [[ -f .gitmodule ]] || git submodule add https://github.com/hansode/vmbuilder.git
+  if ! [[ -d .git ]]; then
+   git init
+  fi
+
+  if ! [[ -f .gitmodule ]]; then
+    git submodule add https://github.com/hansode/vmbuilder.git
+  fi
 }
 
 function vmbuilder_box_cli() {
