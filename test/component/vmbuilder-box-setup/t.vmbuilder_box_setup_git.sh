@@ -22,7 +22,7 @@ function tearDown() {
 
 function test_vmbuilder_box_setup_git() {
   (vmbuilder_box_setup_git ${target_dir})
-  assertEquals 0 $?
+  assertEquals 0 ${?}
 }
 
 ## shunit2
