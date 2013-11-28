@@ -8,14 +8,14 @@
 #
 
 function vmbuilder_box_deploy() {
-  local target_dir=$1
+  local target_dir=${1}
   [[ -n "${target_dir}" ]] || { echo "[ERROR] Invalid argument: target_dir:${target_dir} (${BASH_SOURCE[0]##*/}:${LINENO})" >&2; return 1; }
 
   rsync -av ${BASH_SOURCE[0]%/*}/../templates/ ${target_dir}
 }
 
 function vmbuilder_box_setup_git() {
-  local target_dir=$1
+  local target_dir=${1}
   [[ -n "${target_dir}" ]] || { echo "[ERROR] Invalid argument: target_dir:${target_dir} (${BASH_SOURCE[0]##*/}:${LINENO})" >&2; return 1; }
 
   cd ${target_dir}
@@ -34,5 +34,5 @@ function vmbuilder_box_cli() {
 
 # CLI
 if [[ "${BASH_SOURCE[0]##*/}" == "vmbuilder-box-setup" ]]; then
-  vmbuilder_box_cli $@
+  vmbuilder_box_cli "${@}"
 fi
