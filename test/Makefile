@@ -1,4 +1,6 @@
-all: unit component
+TARGETS=unit component
+
+all: $(TARGETS)
 
 unit:
 	(cd $@ && make)
@@ -6,4 +8,4 @@ unit:
 component:
 	(cd $@ && make)
 
-.PHONY: unit component
+.PHONY: $(TARGETS)

@@ -1,6 +1,8 @@
-all: vmbuilder-box-setup
+TARGETS=vmbuilder-box-setup
+
+all: $(TARGETS)
 
 vmbuilder-box-setup:
 	(cd $@ && make)
 
-.PHONY: vmbuilder-box-setup
+.PHONY: $(TARGETS)
