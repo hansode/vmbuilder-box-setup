@@ -5,6 +5,12 @@ vmbuilder-box-setup
 
 `vmbuilder-box-setup` is the [vmbuilder](https://github.com/hansode/vmbuilder) box setup script
 
+Requirements
+------------
+
++ [bash](http://www.gnu.org/software/bash/)
++ [make](http://www.gnu.org/software/make/)
+
 Getting Started
 ---------------
 
