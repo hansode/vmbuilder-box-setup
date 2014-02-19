@@ -4,7 +4,7 @@
 #
 # requires:
 #  bash
-#  rsync, init
+#  rsync, git
 #
 
 function vmbuilder_box_deploy() {
@@ -21,7 +21,7 @@ function vmbuilder_box_setup_git() {
   cd ${target_dir}
 
   if ! [[ -d .git ]]; then
-   git init
+    git init
   fi
 
   if ! [[ -f .gitmodule ]]; then
